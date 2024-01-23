@@ -1,16 +1,20 @@
 
+import React from 'react'
 import { BrowserRouter, Navigate, Router, Link, useParams} from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import Navbar from '../components/navbar';
 
 
 
     const Books = () => {
+
         const [data, setData]=useState([])
         const [error, setError]=useState(null)
 
 
         //params
         const {bibleId}= useParams()
+
         
 
         useEffect(() => {
@@ -31,6 +35,7 @@ import React, { useState, useEffect } from 'react';
         
     },[])
         
+
 
      
             // divComponents will hold subarrays of the content, each subarray 
@@ -74,16 +79,22 @@ import React, { useState, useEffect } from 'react';
 
 
 
+
+
+
+
         //error handling 
 
         let content
+
         if(!data.length === 0){
+
             content= <p>loading...</p>
         }else if(error){
             content= <p>something is wrong..</p>
         }else{
             content=(
-               
+
                 <div
                   fontSize={[1, 3]}
                   letterSpacing={1}
@@ -91,9 +102,11 @@ import React, { useState, useEffect } from 'react';
                   textAlign="center"
                 >
                   Available Books
+
                   {myComponent()}
                 </div>
                 
+
             )
         }
 
@@ -101,9 +114,62 @@ import React, { useState, useEffect } from 'react';
 
         return (
             <div>
-                {content}
+                
+                <Navbar style={{backgroundColor:"#975252"}}>
+                    <h1>Biblia Online</h1>
+                </Navbar>
+                <div className='container'>
+                <div className="col1">1 part
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                </div>
+                
+                
+                    <div className='col2'>{content}</div>
+                    
+                
+                
+                <div className='col3'>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                </div>
+                </div>
+
                 
             </div>);
 }
  
+
+
 export default Books;
+

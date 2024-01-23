@@ -1,6 +1,9 @@
 
+
 import { BrowserRouter, Navigate, Router, Link} from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import Box from '../components/box';
+import Navbar from '../components/navbar';
 
 
 
@@ -27,7 +30,7 @@ import React, { useState, useEffect } from 'react';
         fetchedData()
         
     },[])
-        
+
 
 
 
@@ -66,9 +69,11 @@ import React, { useState, useEffect } from 'react';
                   width="100%"
                   textAlign="center"
                 >
-                  Available Version
+
+                  {listVersion()}
                 </div>
-                {listVersion()}
+                
+
                 
               </>
             )
@@ -78,11 +83,61 @@ import React, { useState, useEffect } from 'react';
 
         return (
             <div>
-             
-            
-                {content}
+
+                <Navbar style={{backgroundColor:"#975252"}}>
+                    <h1>Biblia Online</h1>
+                </Navbar>
+                <div className='container'>
+                <div className="col1">1 part
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                </div>
+                
+                
+                    <div className='col2'>{content}</div>
+                    
+                
+                
+                <div className='col3'>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                <p>Some very lenghy content</p>
+                </div>
+                </div>
+
                 
             </div>);
 }
  
 export default Version;
+
+
