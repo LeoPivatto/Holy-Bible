@@ -7,6 +7,7 @@ import Navbar from '../components/navbar';
 
 
 
+
     const Version = () => {
         const [data, setData]=useState([])
         const [error, setError]=useState(null)
@@ -29,7 +30,7 @@ import Navbar from '../components/navbar';
         fetchedData()
         
     },[])
-            
+
 
 
 
@@ -68,9 +69,11 @@ import Navbar from '../components/navbar';
                   width="100%"
                   textAlign="center"
                 >
+
                   {listVersion()}
                 </div>
                 
+
                 
               </>
             )
@@ -80,6 +83,7 @@ import Navbar from '../components/navbar';
 
         return (
             <div>
+
                 <Navbar style={{backgroundColor:"#975252"}}>
                     <h1>Biblia Online</h1>
                 </Navbar>
@@ -129,9 +133,11 @@ import Navbar from '../components/navbar';
                 <p>Some very lenghy content</p>
                 </div>
                 </div>
+
                 
             </div>);
 }
  
 export default Version;
+
 
