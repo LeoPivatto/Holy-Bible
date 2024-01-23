@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 
 
 
-
     const Books = () => {
         const [data, setData]=useState([])
         const [error, setError]=useState(null)
@@ -33,32 +32,58 @@ import React, { useState, useEffect } from 'react';
     },[])
         
 
+     
+            // divComponents will hold subarrays of the content, each subarray 
+            //will contain the sizedivision number of elements
+            const divComponents = [];
+            const sizeDivision = 14;   
+
+                 data.forEach((v, i) => {
+                if (i % sizeDivision === 0) {
+                  divComponents.push([]);
+                }
+                divComponents[Math.floor(i / sizeDivision)] = [...divComponents[Math.floor(i / sizeDivision)], v];
+              });
+
+
+            
+              const myComponent=()=>{
+                return <div style={{ border: "1px solid red", display: "flex" }}>
+                        
+                    
+                
+                    {divComponents.map((column)=>{
+                       return (
+                       <div style={{ float: "left", width: "50%",border: "1px solid red"  }}> 
+                           {column.map((w)=>{
+                            return <Link to={{
+                                pathname:`/version/${bibleId}/books/${w.id}/chapters`,
+                                state:{version: w.name}
+                            }} key={w.id}>{w.name}</Link>})}
+                        </div>)
+                    })}
+                    
+                    
+                    </div>
+           }
 
 
 
-        const listBooks=()=>{
-            return data.map((value, index)=>{
-                return(
-                <Link 
-                  to={`/version/${bibleId}/books/${value.id}/chapters`}
-                  key={index}>
-                    {value.name}
-                </Link>)
-                console.log(value)
-            })}
+
+
 
 
 
         //error handling 
 
         let content
-        if(!data){
+        if(!data.length === 0){
             content= <p>loading...</p>
         }else if(error){
             content= <p>something is wrong..</p>
         }else{
             content=(
-                <>
+               
                 <div
                   fontSize={[1, 3]}
                   letterSpacing={1}
@@ -66,10 +91,9 @@ import React, { useState, useEffect } from 'react';
                   textAlign="center"
                 >
                   Available Books
+                  {myComponent()}
                 </div>
-                {listBooks()}
                 
-              </>
             )
         }
 
