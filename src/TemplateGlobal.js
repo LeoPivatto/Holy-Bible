@@ -17,8 +17,20 @@ export const TemplateGlobal= createGlobalStyle`
     a{
         color: #F4F4F4;
         font-family: sans-serif;
-        margin: 5px;
+        margin:5px 0;
+        transition: 0.5s;
+        
+        
     }
+
+    a:hover{
+        background-color:#111111;
+        color: white;
+        
+    }
+
+ 
+
     h1{
         font-size: 3vh;
         font-weight: bold;
@@ -37,7 +49,7 @@ export const TemplateGlobal= createGlobalStyle`
         overflow-x: hidden;
         overflow-y: auto;
         margin:0 10vh 0 0 ;
-        padding: 3vh;
+        padding: 10px 0;
         border-radius:2vw;
         
     }

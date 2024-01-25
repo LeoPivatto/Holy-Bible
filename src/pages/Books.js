@@ -1,8 +1,9 @@
 
-import React from 'react'
+
 import { BrowserRouter, Navigate, Router, Link, useParams} from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/navbar';
+import SideBar from './sidebar';
 
 
 
@@ -25,7 +26,7 @@ import Navbar from '../components/navbar';
                     {headers: { 'api-key': process.env.REACT_APP_API_KEY }})
                 const result= await response.json()
                 setData(result.data)
-                console.log(result.data)
+                
             }
             catch(error) {
                 setError(error)
@@ -41,7 +42,7 @@ import Navbar from '../components/navbar';
             // divComponents will hold subarrays of the content, each subarray 
             //will contain the sizedivision number of elements
             const divComponents = [];
-            const sizeDivision = 14;   
+            const sizeDivision = 120;   
 
                  data.forEach((v, i) => {
                 if (i % sizeDivision === 0) {
@@ -96,10 +97,6 @@ import Navbar from '../components/navbar';
             content=(
 
                 <div
-                  fontSize={[1, 3]}
-                  letterSpacing={1}
-                  width="100%"
-                  textAlign="center"
                 >
                   Available Books
 
@@ -119,24 +116,8 @@ import Navbar from '../components/navbar';
                     <h1>Biblia Online</h1>
                 </Navbar>
                 <div className='container'>
-                <div className="col1">1 part
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
+                <div className="col1">
+                <SideBar/>
                 </div>
                 
                 
