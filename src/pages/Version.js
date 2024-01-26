@@ -33,22 +33,46 @@ import Navbar from '../components/navbar';
 
 
 
+          // divComponents will hold subarrays of the content, each subarray 
+            //will contain the sizedivision number of elements
+            const divComponents = [];
+            const sizeDivision = 127;   
+
+                 data.forEach((v, i) => {
+                if (i % sizeDivision === 0) {
+                  divComponents.push([]);
+                }
+                divComponents[Math.floor(i / sizeDivision)] = [...divComponents[Math.floor(i / sizeDivision)], v];
+              });
 
 
-        const listVersion=()=>{
-            return data.map((value, index)=>{
-               return (
-                <Link 
-                to={{
-                    pathname:`/version/${value.id}`,
-                    state:{version: value.name}
-                }}
-                key={index}>
-                    {value.name}
-                </Link>
-                )
+
+
+
+
+            const myComponent=()=>{
+                return <div style={{ display: "flex" }}>
+                        
+                    
                 
-            })}
+                    {divComponents.map((column)=>{
+                       return (
+                       <div style={{ float: "left", width: "50%"  }}> 
+                           {column.map((w)=>{
+                            return <Link to={{
+                                pathname:`/version/${w.id}`,
+                                state:{version: w.name}
+                            }} 
+                            style={{width:"100%", display:"flex",alignItems:"center", height:"30px" }}
+                            key={w.id}>{w.name}</Link>})}
+                        </div>)
+                    })}
+                    
+                    
+                    </div>
+           }
+
+            
 
 
 
@@ -70,7 +94,7 @@ import Navbar from '../components/navbar';
                   textAlign="center"
                 >
 
-                  {listVersion()}
+                  {myComponent()}
                 </div>
                 
 
@@ -88,24 +112,7 @@ import Navbar from '../components/navbar';
                     <h1>Biblia Online</h1>
                 </Navbar>
                 <div className='container'>
-                <div className="col1">1 part
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
+                <div className="col0">
                 </div>
                 
                 

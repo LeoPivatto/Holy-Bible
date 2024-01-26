@@ -12,20 +12,22 @@ export const TemplateGlobal= createGlobalStyle`
         display: table;
         width: 100%;
         height: 100%;
+        
     }
 
     a{
         color: #F4F4F4;
         font-family: sans-serif;
-        margin:5px 0;
+        margin:5px 5px;
         transition: 0.5s;
-        
+        padding: 2px 10px;
         
     }
 
     a:hover{
-        background-color:#111111;
+        background-color:black;
         color: white;
+        
         
     }
 
@@ -39,6 +41,19 @@ export const TemplateGlobal= createGlobalStyle`
         text-decoration: none;
     }
     
+    .col0{
+        width: 15%;
+        height: 100vh;
+        float: left;
+        border-collapse: collapse;
+        background-color:none;
+        overflow-x: hidden;
+        overflow-y: auto;
+        margin:0 10vh 0 0 ;
+        padding: 10px 0;
+        border-radius:2vw;
+    }
+
 
     .col1{
         width: 15%;
@@ -56,7 +71,7 @@ export const TemplateGlobal= createGlobalStyle`
     .col2{
         background-color:#1B1717;
         border-radius:2vw;
-        width: 48% !important;
+        width: 50% !important;
         height: 90vh;
         float: left;
         overflow-x: hidden;
