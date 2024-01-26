@@ -57,13 +57,13 @@ import Navbar from '../components/navbar';
                 
                     {divComponents.map((column)=>{
                        return (
-                       <div style={{ float: "left", width: "50%"  }}> 
+                       <div style={{ float: "left", width: "50%", border:"1px solid #212121", borderRadius:"5px"   }}> 
                            {column.map((w)=>{
                             return <Link to={{
                                 pathname:`/version/${w.id}`,
                                 state:{version: w.name}
                             }} 
-                            style={{width:"100%", display:"flex",alignItems:"center", height:"30px" }}
+                            style={{display:"flex",alignItems:"center",padding: "6px 12px"}}
                             key={w.id}>{w.name}</Link>})}
                         </div>)
                     })}
@@ -88,10 +88,6 @@ import Navbar from '../components/navbar';
                 <>
                 
                 <div
-                  fontSize={[1, 3]}
-                  letterSpacing={1}
-                  width="100%"
-                  textAlign="center"
                 >
 
                   {myComponent()}
