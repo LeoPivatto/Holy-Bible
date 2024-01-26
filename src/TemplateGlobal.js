@@ -21,14 +21,17 @@ export const TemplateGlobal= createGlobalStyle`
         margin:5px 5px;
         transition: 0.5s;
         padding: 2px 10px;
-        
+        border: 1px solid #212121
     }
 
     a:hover{
-        background-color:black;
+        background-color:#0D0D0D;
         color: white;
-        
-        
+        border-top-left-radius:5px;
+        border-top-right-radius:5px;
+        border-bottom-left-radius:5px;
+        border-bottom-right-radius:5px;
+        border: 1.5px solid #676767;
     }
 
  
