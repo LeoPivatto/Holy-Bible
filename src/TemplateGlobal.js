@@ -15,6 +15,36 @@ export const TemplateGlobal= createGlobalStyle`
         
     }
 
+    span{
+        margin: 7px;
+        top: 10px;
+        font-size:12px ;
+        color: #BC3A3A;
+        
+    }
+
+
+*::-webkit-scrollbar-thumb {
+  
+  border: 1.5px solid #676767;
+  
+}
+
+*::-webkit-scrollbar-track {
+  background-color: white;
+}
+
+
+    p{
+        font-size: medium;
+        
+        font-weight: lighter;
+        line-height:30px;
+        margin-bottom: 2rem;
+        font-family: sans-serif;
+        
+    }
+
     a{
         color: #F4F4F4;
         font-family: sans-serif;

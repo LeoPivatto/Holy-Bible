@@ -3,7 +3,7 @@
 import { BrowserRouter, Navigate, Router, Link, useParams} from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/navbar';
-
+import SideBar from './sidebar';
 
 
     const Passages = () => {
@@ -48,7 +48,7 @@ import Navbar from '../components/navbar';
             if(data.length === 0){
               return  <p>loading...</p>
             }
-            return <div dangerouslySetInnerHTML={{__html: content}} />
+            return <div style={{}} dangerouslySetInnerHTML={{__html: content}} />
         }
 
 
@@ -64,7 +64,7 @@ import Navbar from '../components/navbar';
             content=(
                 <>
                 
-                  Available Passages
+                
                   {listPassages(data)}
                 
                 
@@ -81,24 +81,8 @@ import Navbar from '../components/navbar';
                     <h1>Biblia Online</h1>
                 </Navbar>
                 <div className='container'>
-                <div className="col1">1 part
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
+                <div className="col1">
+                <SideBar/>
                 </div>
                 
                 
