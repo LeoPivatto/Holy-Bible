@@ -1,10 +1,11 @@
 
 
-import { BrowserRouter, Navigate, Router, Link, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/navbar';
 import SideBar from './sidebar';
-
+import { fetchPassagesData } from '../api/api'; 
+import Toolsbar from '../components/toolsbar';
 
     const Passages = () => {
         const [data, setData]=useState([])
@@ -20,16 +21,8 @@ import SideBar from './sidebar';
         useEffect(() => {
         const fetchedData = async()=>{
             try{
-                const url=`https://api.scripture.api.bible/v1/bibles/${bibleId}/passages/${passagesId}`
-                const response = await fetch(url,
-                    {headers: { 'api-key': process.env.REACT_APP_API_KEY }})
-                const result= await response.json()
-                
-                setData(result.data)
-                console.log(data.value)
-
-                
-
+                const response = await fetchPassagesData(bibleId, passagesId)
+                setData(response)
                 
             }
             catch(error) {
@@ -61,10 +54,11 @@ import SideBar from './sidebar';
         }else if(error){
             content= <p>something is wrong..</p>
         }else{
+            
             content=(
                 <>
                 
-                
+                <Toolsbar/>
                   {listPassages(data)}
                 
                 
@@ -77,10 +71,18 @@ import SideBar from './sidebar';
 
         return (
             <div>
-                <Navbar style={{backgroundColor:"#975252"}}>
+                <Navbar style={{backgroundColor:"#975252", padding:"5px 0"}}>
+
+                    <a style={{border:"none",backgroundColor:"#975252",  display:"flex"}} href='/'>
                     <h1>Biblia Online</h1>
+                    </a>
+
+                    
                 </Navbar>
                 <div className='container'>
+                
+
+
                 <div className="col1">
                 <SideBar/>
                 </div>

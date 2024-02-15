@@ -15,7 +15,7 @@ export const TemplateGlobal= createGlobalStyle`
         
     }
 
-    span{
+     .v{
         margin: 7px;
         top: 10px;
         font-size:12px ;
@@ -37,12 +37,10 @@ export const TemplateGlobal= createGlobalStyle`
 
     p{
         font-size: medium;
-        
         font-weight: lighter;
         line-height:30px;
         margin-bottom: 2rem;
         font-family: sans-serif;
-        
     }
 
     a{
