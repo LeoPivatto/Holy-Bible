@@ -117,8 +117,10 @@ import SideBar from './sidebar';
         return (
             <div>
                 
-                <Navbar style={{backgroundColor:"#975252"}}>
-                    <h1>Biblia Online</h1>
+                <Navbar style={{backgroundColor:"#975252", padding:"5px 0"}}>
+                    <a style={{border:"none",backgroundColor:"#975252",  display:"flex"}} href='/'>
+                        <h1>Biblia Online</h1>
+                    </a>
                 </Navbar>
                 <div className='container'>
                 <div className="col1">

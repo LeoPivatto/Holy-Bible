@@ -1,8 +1,7 @@
 
 
-import { BrowserRouter, Navigate, Router, Link} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import Box from '../components/box';
 import Navbar from '../components/navbar';
 
 
@@ -10,7 +9,7 @@ import Navbar from '../components/navbar';
 
     const Version = () => {
         const [data, setData]=useState([])
-        const [error, setError]=useState(null)
+        const [error, setError]=useState(null) 
 
 
         useEffect(() => {
@@ -36,7 +35,7 @@ import Navbar from '../components/navbar';
           // divComponents will hold subarrays of the content, each subarray 
             //will contain the sizedivision number of elements
             const divComponents = [];
-            const sizeDivision = 127;   
+            const sizeDivision = 129;   
 
                  data.forEach((v, i) => {
                 if (i % sizeDivision === 0) {
@@ -104,8 +103,10 @@ import Navbar from '../components/navbar';
         return (
             <div>
 
-                <Navbar style={{backgroundColor:"#975252"}}>
-                    <h1>Biblia Online</h1>
+                <Navbar style={{backgroundColor:"#975252", padding:"5px 0"}}>
+                    <a style={{border:"none",backgroundColor:"#975252", display:"flex"}} href='/'>
+                        <h1>Biblia Online</h1>
+                    </a>
                 </Navbar>
                 <div className='container'>
                 <div className="col0">
