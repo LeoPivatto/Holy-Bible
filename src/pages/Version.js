@@ -37,12 +37,17 @@ import Navbar from '../components/navbar';
             const divComponents = [];
             const sizeDivision = 129;   
 
+
+            if(data !== undefined){
                  data.forEach((v, i) => {
                 if (i % sizeDivision === 0) {
                   divComponents.push([]);
                 }
                 divComponents[Math.floor(i / sizeDivision)] = [...divComponents[Math.floor(i / sizeDivision)], v];
-              });
+              })
+            } else{
+                console.error("data undefined")
+            }
 
 
 
@@ -103,10 +108,13 @@ import Navbar from '../components/navbar';
         return (
             <div>
 
-                <Navbar style={{backgroundColor:"#975252", padding:"5px 0"}}>
-                    <a style={{border:"none",backgroundColor:"#975252", display:"flex"}} href='/'>
-                        <h1>Biblia Online</h1>
-                    </a>
+                <Navbar style={{backgroundColor:"#975252"}}>
+                    <div style={{fontSize:"1.5vw",}}>
+                    <a style={{border:"none",
+                        backgroundColor:"#975252", 
+                    }} href='/'>📖 Bible</a>
+
+                    </div>
                 </Navbar>
                 <div className='container'>
                 <div className="col0">
@@ -117,25 +125,6 @@ import Navbar from '../components/navbar';
                     
                 
                 
-                <div className='col3'>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                </div>
                 </div>
 
                 
