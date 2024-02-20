@@ -70,6 +70,7 @@ export const TemplateGlobal= createGlobalStyle`
         font-family: sans-serif;
         color: #F4F4F4;
         text-decoration: none;
+        width: 100px;
     }
     
     .col0{
@@ -122,7 +123,7 @@ export const TemplateGlobal= createGlobalStyle`
         overflow-x: hidden;
         overflow-y: scroll;
         margin:0 2vw 0 10vh ;
-        padding: 2vh;
+        padding: 4vh 2vw;
         border-radius:2vw;
     }
 

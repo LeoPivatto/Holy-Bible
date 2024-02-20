@@ -111,10 +111,13 @@ import SideBar from './sidebar';
         return (
             <div>
                 
-                <Navbar style={{backgroundColor:"#975252", padding:"5px 0"}}>
-                    <a style={{border:"none",backgroundColor:"#975252",  display:"flex"}} href='/'>
-                        <h1>Biblia Online</h1>
-                    </a>
+                <Navbar style={{backgroundColor:"#975252"}}>
+                    <div style={{fontSize:"1.5vw",}}>
+                    <a style={{border:"none",
+                        backgroundColor:"#975252", 
+                    }} href='/'>📖 Bible</a>
+
+                    </div>
                 </Navbar>
                 <div className='container'>
                 <div className="col1">
@@ -125,25 +128,7 @@ import SideBar from './sidebar';
                     
                 
                 
-                <div className='col3'>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                </div>
+                
                 </div>
                 
             </div>);

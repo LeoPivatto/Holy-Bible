@@ -22,7 +22,7 @@ import { fetchPassagesData } from '../api/api';
                 const response = await fetchPassagesData(bibleId, passagesId)
                 setData(response.data)
                 setFetchedData(response.content)
-                console.log(response)
+                
             }
             catch(error) {
                 setError(error)
@@ -30,7 +30,7 @@ import { fetchPassagesData } from '../api/api';
 
         fetchedData()
 
-        console.log(fetchPassagesData)
+      
         
         
     },[bibleId, passagesId])
