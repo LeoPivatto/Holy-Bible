@@ -1,5 +1,5 @@
-import React from 'react'
-import { Header, Segment } from 'semantic-ui-react'
+
+import {Segment } from 'semantic-ui-react'
 import styled from "styled-components";
 
 
