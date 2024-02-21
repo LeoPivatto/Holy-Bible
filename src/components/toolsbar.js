@@ -6,45 +6,52 @@ import { fetchPassagesData } from '../api/api';
 
 
     const Toolsbar = () => {
-        const [data, setData]=useState([])
-        const [error, setError]=useState(null)
         //params
         const {bibleId}= useParams()
         const {passagesId}=useParams()
-        const [fetchedData, setFetchedData]= useState("");
-        const [speechData, setSpeechData] = useState(null);
-        
+
+        const [fetchedData, setFetchedData]= useState("")
+        const [currentSpeech, setCurrentSpeech] = useState(null)
         
 
         useEffect(() => {
         const fetchedData = async()=>{
             try{
                 const response = await fetchPassagesData(bibleId, passagesId)
-                setData(response.data)
                 setFetchedData(response.content)
                 
             }
             catch(error) {
-                setError(error)
+                console.error(error)
             }}
 
         fetchedData()
 
-      
+        return () => {
+          if (currentSpeech && window.speechSynthesis.speaking) {
+              window.speechSynthesis.cancel();
+          }
+      };
         
         
-    },[bibleId, passagesId])
+    },[bibleId, passagesId, currentSpeech])
     
     
     
   const speak= () =>{
-    if(window.speechSynthesis.speaking){
-      console.log("already speakinggggggg")}
+    if(currentSpeech && window.speechSynthesis.speaking){
+      console.log("already speakinggggggg")
+      if (currentSpeech) {
+        window.speechSynthesis.cancel(); 
+    }}
+
       
     // speech function
     if(fetchedData !== ""){
      const speechData= new SpeechSynthesisUtterance(fetchedData)
-    
+     setCurrentSpeech(speechData);
+
+
 
     // speak end
     speechData.onend = (event)=>{
@@ -59,7 +66,7 @@ import { fetchPassagesData } from '../api/api';
 
     window.speechSynthesis.speak(speechData);
 
-    setSpeechData(speechData);
+
     }
   }
   
