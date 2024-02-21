@@ -6,7 +6,7 @@ import Navbar from '../components/navbar';
 import SideBar from './sidebar';
 import { fetchPassagesData } from '../api/api'; 
 import Toolsbar from '../components/toolsbar';
-const api_key= process.env.REACT_APP_TRANSLATE_API_KEY
+
 
 
 

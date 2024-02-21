@@ -1,6 +1,6 @@
 
 
-import { BrowserRouter, Navigate, Router, Link, useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/navbar';
 import SideBar from './sidebar';
@@ -34,7 +34,7 @@ import SideBar from './sidebar';
 
         fetchedData()
         
-    },[])
+    },[bibleId])
         
 
 
