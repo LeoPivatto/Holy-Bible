@@ -40,5 +40,9 @@ Once the application is up and running, you can access it in your web browser at
 - Report bugs or request features by opening an issue.
 - Fork the repository and submit pull requests for bug fixes or enhancements.
 
+## License
+- MIT License
+  Copyright (c) 2024 Leo Pivatto
+
 
 
