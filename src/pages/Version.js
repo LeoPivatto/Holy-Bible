@@ -1,15 +1,15 @@
 
 
-import { BrowserRouter, Navigate, Router, Link} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import Box from '../components/box';
 import Navbar from '../components/navbar';
+
 
 
 
     const Version = () => {
         const [data, setData]=useState([])
-        const [error, setError]=useState(null)
+        const [error, setError]=useState(null) 
 
 
         useEffect(() => {
@@ -29,25 +29,54 @@ import Navbar from '../components/navbar';
         fetchedData()
         
     },[])
-            
+
+
+
+          // divComponents will hold subarrays of the content, each subarray 
+            //will contain the sizedivision number of elements
+            const divComponents = [];
+            const sizeDivision = 129;   
+
+
+            if(data !== undefined){
+                 data.forEach((v, i) => {
+                if (i % sizeDivision === 0) {
+                  divComponents.push([]);
+                }
+                divComponents[Math.floor(i / sizeDivision)] = [...divComponents[Math.floor(i / sizeDivision)], v];
+              })
+            } else{
+                console.error("data undefined")
+            }
 
 
 
 
-        const listVersion=()=>{
-            return data.map((value, index)=>{
-               return (
-                <Link 
-                to={{
-                    pathname:`/version/${value.id}`,
-                    state:{version: value.name}
-                }}
-                key={index}>
-                    {value.name}
-                </Link>
-                )
+
+
+            const myComponent=()=>{
+                return <div style={{ display: "flex" }}>
+                        
+                    
                 
-            })}
+                    {divComponents.map((column)=>{
+                       return (
+                       <div style={{ float: "left", width: "50%", border:"1px solid #212121", borderRadius:"5px"   }}> 
+                           {column.map((w)=>{
+                            return <Link to={{
+                                pathname:`/version/${w.id}`,
+                                state:{version: w.name}
+                            }} 
+                            style={{display:"flex",alignItems:"center",padding: "6px 12px"}}
+                            key={w.id}>{w.name}</Link>})}
+                        </div>)
+                    })}
+                    
+                    
+                    </div>
+           }
+
+            
 
 
 
@@ -63,14 +92,12 @@ import Navbar from '../components/navbar';
                 <>
                 
                 <div
-                  fontSize={[1, 3]}
-                  letterSpacing={1}
-                  width="100%"
-                  textAlign="center"
                 >
-                  {listVersion()}
+
+                  {myComponent()}
                 </div>
                 
+
                 
               </>
             )
@@ -80,28 +107,17 @@ import Navbar from '../components/navbar';
 
         return (
             <div>
+
                 <Navbar style={{backgroundColor:"#975252"}}>
-                    <h1>Biblia Online</h1>
+                    <div style={{fontSize:"1.5vw",}}>
+                    <a style={{border:"none",
+                        backgroundColor:"#975252", 
+                    }} href='/'>📖 Bible</a>
+
+                    </div>
                 </Navbar>
                 <div className='container'>
-                <div className="col1">1 part
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
+                <div className="col0">
                 </div>
                 
                 
@@ -109,29 +125,12 @@ import Navbar from '../components/navbar';
                     
                 
                 
-                <div className='col3'>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
                 </div>
-                </div>
+
                 
             </div>);
 }
  
 export default Version;
+
 

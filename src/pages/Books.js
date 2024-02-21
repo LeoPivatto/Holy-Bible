@@ -1,18 +1,21 @@
-import React from 'react'
-import { BrowserRouter, Navigate, Router, Link, useParams} from 'react-router-dom';
+
+
+import {Link, useParams} from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/navbar';
+import SideBar from './sidebar';
 
 
 
-    const Chapters = () => {
+    const Books = () => {
+
         const [data, setData]=useState([])
         const [error, setError]=useState(null)
 
 
         //params
         const {bibleId}= useParams()
-        const {bookId}=useParams()
+
         
 
         useEffect(() => {
@@ -23,7 +26,7 @@ import Navbar from '../components/navbar';
                     {headers: { 'api-key': process.env.REACT_APP_API_KEY }})
                 const result= await response.json()
                 setData(result.data)
-                console.log(result.data)
+                
             }
             catch(error) {
                 setError(error)
@@ -31,47 +34,81 @@ import Navbar from '../components/navbar';
 
         fetchedData()
         
-    },[])
+    },[bibleId])
         
 
 
+     
+            // divComponents will hold subarrays of the content, each subarray 
+            //will contain the sizedivision number of elements
+            const divComponents = [];
+            const sizeDivision = 13;   
+
+                 data.forEach((v, i) => {
+                if (i % sizeDivision === 0) {
+                  divComponents.push([]);
+                }
+                divComponents[Math.floor(i / sizeDivision)] = [...divComponents[Math.floor(i / sizeDivision)], v];
+              });
 
 
-        const listChapters=()=>{
-            return data.map((value, index)=>{
-                return(
-                <Link 
-                  to={`/version/${bibleId}/passages/${value.id}`}
-                  key={index}>
-                    {value.reference}
-                </Link>)
-                console.log(value)
-            })}
+            
+              const myComponent=()=>{
+                return <div>
+                        
+                    
+                
+                    {divComponents.map((column)=>{
+                       return (
+                       <div style={{ float: "left", width: "33%",paddingBottom:"20px",
+                       border:"1px solid #212121", borderRadius:"5px" }}> 
+                           {column.map((w)=>{
+                            return <Link to={{
+                                pathname:`/version/${bibleId}/books/${w.id}/chapters`,
+                                state:{version: w.name}
+                            }} 
+                            style={{display:"flex",
+                            padding: "6px 12px",
+                            } }
+                            key={w.id}>{w.name}</Link>})}
+                        </div>)
+                    })}
+                    
+                    
+                    </div>
+           }
+
+
+
+
+
+
+
+
+
 
 
 
         //error handling 
 
         let content
-        if(!data){
+
+        if(!data.length === 0){
+
             content= <p>loading...</p>
         }else if(error){
             content= <p>something is wrong..</p>
         }else{
             content=(
-                <>
+
                 <div
-                  fontSize={[1, 3]}
-                  letterSpacing={1}
-                  width="100%"
-                  textAlign="center"
                 >
                   Available Books
-                  {listChapters()}
+
+                  {myComponent()}
                 </div>
                 
-                
-              </>
+
             )
         }
 
@@ -81,57 +118,30 @@ import Navbar from '../components/navbar';
             <div>
                 
                 <Navbar style={{backgroundColor:"#975252"}}>
-                    <h1>Biblia Online</h1>
+                    <div style={{fontSize:"1.5vw",}}>
+                    <a style={{border:"none",
+                        backgroundColor:"#975252", 
+                    }} href='/'>📖 Bible</a>
+
+                    </div>
                 </Navbar>
                 <div className='container'>
-                <div className="col1">1 part
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
+                <div className="col1">
+                <SideBar/>
                 </div>
                 
                 
                     <div className='col2'>{content}</div>
                     
                 
-                
-                <div className='col3'>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
+             
                 </div>
-                </div>
+
                 
             </div>);
 }
  
-export default Chapters;
+
+
+export default Books;
 
