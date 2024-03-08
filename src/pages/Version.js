@@ -1,8 +1,7 @@
 
 
-import { BrowserRouter, Navigate, Router, Link} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import Box from '../components/box';
 import Navbar from '../components/navbar';
 
 
@@ -10,7 +9,7 @@ import Navbar from '../components/navbar';
 
     const Version = () => {
         const [data, setData]=useState([])
-        const [error, setError]=useState(null)
+        const [error, setError]=useState(null) 
 
 
         useEffect(() => {
@@ -43,13 +42,14 @@ import Navbar from '../components/navbar';
 
 
 
+            if(data !== undefined){
                  data.forEach((v, i) => {
                 if (i % sizeDivision === 0) {
                   divComponents.push([]);
                 }
                 divComponents[Math.floor(i / sizeDivision)] = [...divComponents[Math.floor(i / sizeDivision)], v];
               })
-            
+
 
 
 
@@ -58,16 +58,17 @@ import Navbar from '../components/navbar';
                  <div style={{ display: "flex" }}>
                     {divComponents.map((column)=>{
                        return (
-                       <div style={{ float: "left", width: "50%"  }}> 
+                       <div style={{ float: "left", width: "50%", border:"1px solid #212121", borderRadius:"5px"   }}> 
                            {column.map((w)=>{
                             return <Link to={{
                                 pathname:`/version/${w.id}`,
                                 state:{version: w.name}
                             }} 
-                            style={{width:"100%", display:"flex",alignItems:"center", height:"30px" }}
+                            style={{display:"flex",alignItems:"center",padding: "6px 12px"}}
                             key={w.id}>{w.name}</Link>})}
                         </div>)
                     })}
+
                 </div>
  
         )}
@@ -77,7 +78,12 @@ import Navbar from '../components/navbar';
             <div>
 
                 <Navbar style={{backgroundColor:"#975252"}}>
-                    <h1>Biblia Online</h1>
+                    <div style={{fontSize:"1.5vw",}}>
+                    <a style={{border:"none",
+                        backgroundColor:"#975252", 
+                    }} href='/'>📖 Bible</a>
+
+                    </div>
                 </Navbar>
                 <div className='container'>
                 <div className="col0"></div>
@@ -85,25 +91,6 @@ import Navbar from '../components/navbar';
                     
                 
                 
-                <div className='col3'>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                </div>
                 </div>
 
                 

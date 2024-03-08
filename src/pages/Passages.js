@@ -1,15 +1,19 @@
 
 
-import { BrowserRouter, Navigate, Router, Link, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/navbar';
+import SideBar from './sidebar';
+import { fetchPassagesData } from '../api/api'; 
+import Toolsbar from '../components/toolsbar';
+
 
 
 
     const Passages = () => {
         const [data, setData]=useState([])
         const [error, setError]=useState(null)
-
+        const [responsedata, setResponseData]= useState([])
 
         //params
         const {bibleId}= useParams()
@@ -20,16 +24,9 @@ import Navbar from '../components/navbar';
         useEffect(() => {
         const fetchedData = async()=>{
             try{
-                const url=`https://api.scripture.api.bible/v1/bibles/${bibleId}/passages/${passagesId}`
-                const response = await fetch(url,
-                    {headers: { 'api-key': process.env.REACT_APP_API_KEY }})
-                const result= await response.json()
+                const response = await fetchPassagesData(bibleId, passagesId)
+                setData(response)
                 
-                setData(result.data)
-                console.log(data.value)
-
-                
-
                 
             }
             catch(error) {
@@ -40,16 +37,62 @@ import Navbar from '../components/navbar';
         
     },[bibleId, passagesId])
         
+   
 
-
-
+    
 
         const listPassages=({content})=>{
-            if(data.length === 0){
+            if(!content){
               return  <p>loading...</p>
             }
-            return <div dangerouslySetInnerHTML={{__html: content}} />
+            return <div style={{}} dangerouslySetInnerHTML={{__html: content}} />
         }
+
+        
+
+
+        useEffect(()=>{
+        const getMessages= async()=>{
+            
+
+                if (!data || !data.content) {
+                    console.error("Data is empty or does not contain content");
+                    return;
+                }
+                const options= {
+                    method:"POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        message:`
+                        make a summary of the passage, saying what the person that wrote is trying to say,
+                        if its an event that happened give me where was being located, what should people undestand of it, what is saying to their hearts?
+                        (if it has a couple of gramatical errors just ignore it ) ${data.content}` 
+
+                    }),}
+
+                try{
+                    const response = await fetch("http://localhost:5000/completions",  options   )
+                    const responseData= await response.json()
+                    setResponseData(responseData )
+                    console.log(responseData)
+            } catch (error){
+                console.error(error)
+            }}
+
+        if (data && data.content) {
+            getMessages();
+        }
+  
+    }, [data])
+
+        
+
+        
+
+
+
 
 
 
@@ -61,10 +104,11 @@ import Navbar from '../components/navbar';
         }else if(error){
             content= <p>something is wrong..</p>
         }else{
+            
             content=(
                 <>
                 
-                  Available Passages
+                <Toolsbar/>
                   {listPassages(data)}
                 
                 
@@ -78,27 +122,19 @@ import Navbar from '../components/navbar';
         return (
             <div>
                 <Navbar style={{backgroundColor:"#975252"}}>
-                    <h1>Biblia Online</h1>
+                    <div style={{fontSize:"1.5vw",}}>
+                    <a style={{border:"none",
+                        backgroundColor:"#975252", 
+                    }} href='/'>📖 Bible</a>
+
+                    </div>
                 </Navbar>
                 <div className='container'>
-                <div className="col1">1 part
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
+                
+
+
+                <div className="col1">
+                <SideBar/>
                 </div>
                 
                 
@@ -106,26 +142,22 @@ import Navbar from '../components/navbar';
                     
                 
                 
-                <div className='col3'>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
+                    <div className='col3'>
+                    <p style={{fontWeight:"bold"}}>Summary of the chapter:</p>
+
+                    {
+                    responsedata && 
+                    responsedata.choices && 
+                    responsedata.choices[0] && 
+                    responsedata.choices[0].message && 
+                    
+                    (<p>{responsedata.choices[0].message.content}</p>)
+
+                    }
+                    </div>
+                    
                 </div>
-                </div>
+
                 
             </div>);
 }
