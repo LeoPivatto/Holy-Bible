@@ -1,8 +1,5 @@
-
-
-import { BrowserRouter, Navigate, Router, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import Box from '../components/box';
 import Navbar from '../components/navbar';
 
 
@@ -111,5 +108,3 @@ import Navbar from '../components/navbar';
 }
  
 export default Version;
-
-
