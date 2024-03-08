@@ -34,7 +34,11 @@ Once the application is up and running, you can access it in your web browser at
 
 
 ## API Usage 
-   - The Bible Project utilizes the API.BIBLE API to fetch Bible data. You can find more information about the API and its usage [here](https://docs.api.bible/).
+   - The online-bible utilizes the API.BIBLE API to fetch Bible data. To use the API, follow these steps:
+1. Sign up for an account and obtain an API key from the [API.BIBLE website](https://scripture.api.bible/).
+2. Open the `.env` file.
+3. Replace `your_api_key` with your actual API key.
+
 
 ## Contributing
 - Report bugs or request features by opening an issue.
