@@ -1,6 +1,6 @@
 
 
-import { BrowserRouter, Navigate, Router, Link, useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
 
@@ -27,7 +27,7 @@ const SideBar= ()=>{
                     {headers: { 'api-key': process.env.REACT_APP_API_KEY }})
                 const result= await response.json()
                 setData(result.data)
-                console.log(result.data)
+                
             }
             catch(error) {
                 setError(error)
@@ -35,7 +35,7 @@ const SideBar= ()=>{
 
         fetchedData()
         
-    },[])
+    },[bibleId])
         
 
 

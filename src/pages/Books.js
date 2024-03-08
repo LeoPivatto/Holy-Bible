@@ -1,6 +1,6 @@
 
 
-import { BrowserRouter, Navigate, Router, Link, useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/navbar';
 import SideBar from './sidebar';
@@ -34,7 +34,7 @@ import SideBar from './sidebar';
 
         fetchedData()
         
-    },[])
+    },[bibleId])
         
 
 
@@ -42,7 +42,7 @@ import SideBar from './sidebar';
             // divComponents will hold subarrays of the content, each subarray 
             //will contain the sizedivision number of elements
             const divComponents = [];
-            const sizeDivision = 120;   
+            const sizeDivision = 13;   
 
                  data.forEach((v, i) => {
                 if (i % sizeDivision === 0) {
@@ -54,18 +54,23 @@ import SideBar from './sidebar';
 
             
               const myComponent=()=>{
-                return <div style={{ border: "1px solid red", display: "flex" }}>
+                return <div>
                         
                     
                 
                     {divComponents.map((column)=>{
                        return (
-                       <div style={{ float: "left", width: "50%",border: "1px solid red"  }}> 
+                       <div style={{ float: "left", width: "33%",paddingBottom:"20px",
+                       border:"1px solid #212121", borderRadius:"5px" }}> 
                            {column.map((w)=>{
                             return <Link to={{
                                 pathname:`/version/${bibleId}/books/${w.id}/chapters`,
                                 state:{version: w.name}
-                            }} key={w.id}>{w.name}</Link>})}
+                            }} 
+                            style={{display:"flex",
+                            padding: "6px 12px",
+                            } }
+                            key={w.id}>{w.name}</Link>})}
                         </div>)
                     })}
                     
@@ -113,7 +118,12 @@ import SideBar from './sidebar';
             <div>
                 
                 <Navbar style={{backgroundColor:"#975252"}}>
-                    <h1>Biblia Online</h1>
+                    <div style={{fontSize:"1.5vw",}}>
+                    <a style={{border:"none",
+                        backgroundColor:"#975252", 
+                    }} href='/'>📖 Bible</a>
+
+                    </div>
                 </Navbar>
                 <div className='container'>
                 <div className="col1">
@@ -124,26 +134,7 @@ import SideBar from './sidebar';
                     <div className='col2'>{content}</div>
                     
                 
-                
-                <div className='col3'>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                <p>Some very lenghy content</p>
-                </div>
+             
                 </div>
 
                 
