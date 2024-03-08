@@ -30,12 +30,16 @@ import Navbar from '../components/navbar';
         
     },[])
 
+    let content
+    if(!data){
+        content= <p>loading...</p>
+    }else if(error){
+        content= <p>something is wrong..</p>
+    }else{
 
-
-          // divComponents will hold subarrays of the content, each subarray 
-            //will contain the sizedivision number of elements
             const divComponents = [];
             const sizeDivision = 129;   
+
 
 
             if(data !== undefined){
@@ -45,20 +49,13 @@ import Navbar from '../components/navbar';
                 }
                 divComponents[Math.floor(i / sizeDivision)] = [...divComponents[Math.floor(i / sizeDivision)], v];
               })
-            } else{
-                console.error("data undefined")
-            }
 
 
 
 
 
-
-            const myComponent=()=>{
-                return <div style={{ display: "flex" }}>
-                        
-                    
-                
+        content=(
+                 <div style={{ display: "flex" }}>
                     {divComponents.map((column)=>{
                        return (
                        <div style={{ float: "left", width: "50%", border:"1px solid #212121", borderRadius:"5px"   }}> 
@@ -71,39 +68,11 @@ import Navbar from '../components/navbar';
                             key={w.id}>{w.name}</Link>})}
                         </div>)
                     })}
-                    
-                    
-                    </div>
-           }
 
-            
-
-
-
-        //error handling 
-
-        let content
-        if(!data){
-            content= <p>loading...</p>
-        }else if(error){
-            content= <p>something is wrong..</p>
-        }else{
-            content=(
-                <>
-                
-                <div
-                >
-
-                  {myComponent()}
                 </div>
-                
-
-                
-              </>
-            )
-        }
-
-
+ 
+        )}
+        
 
         return (
             <div>
@@ -117,11 +86,8 @@ import Navbar from '../components/navbar';
                     </div>
                 </Navbar>
                 <div className='container'>
-                <div className="col0">
-                </div>
-                
-                
-                    <div className='col2'>{content}</div>
+                <div className="col0"></div>
+                <div className='col2'>{content}</div>
                     
                 
                 
